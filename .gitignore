@@ -1,0 +1,18 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 虚拟环境（如果以后在项目里建）
+venv/
+.venv/
+
+# 系统杂项
+.DS_Store
+Thumbs.db
+
+# 大体量中间数据，如果以后有的话再逐步加：
+# data_pipelines/*/raw/
+# results/tmp/

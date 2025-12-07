@@ -1,0 +1,22 @@
+{
+  "4": {
+    "rating_increase": {
+      "records": 313,
+      "structures": 292
+    },
+    "reconstructed_after_first_rating": {
+      "records": 125,
+      "structures": 19
+    }
+  },
+  "3": {
+    "rating_increase": {
+      "records": 15296,
+      "structures": 13639
+    },
+    "reconstructed_after_first_rating": {
+      "records": 3486,
+      "structures": 693
+    }
+  }
+}
