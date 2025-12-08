@@ -12,7 +12,7 @@ Inventory Rating 数据清洗 pipeline 的第 1 阶段：逻辑异常清洗。
 3. `clean_inventory_rating_records.csv`：
    剔除上述两类逻辑异常记录后的“逻辑一致的基础样本集”，
    作为后续缺失值处理、数值异常检测和特征工程的输入。
-4. `summary.yaml`：
+4. `logical_anomaly_summary_stage1.yaml`：
    对两类逻辑异常在不同方法（3 / 4）下的记录数和桥梁数量进行汇总。
 
 说明：
@@ -304,7 +304,7 @@ def write_summary_yaml(
     reconstructed_summary: Dict[str, Dict[str, int]],
 ) -> None:
     """
-    生成 summary.yaml，按方法维度汇总两类逻辑异常的记录数与桥梁数。
+    生成 Stage 1 的逻辑异常汇总 YAML 文件，按方法维度汇总两类逻辑异常的记录数与桥梁数。
 
     YAML 结构示意：
     - method_3:
@@ -349,7 +349,8 @@ def main() -> None:
     2. 仅保留 Inventory Rating 方法 3 和 4 的记录，并构建总表 DataFrame；
     3. 按规则 1、规则 2 检测两类时间逻辑异常，并输出对应明细 CSV；
     4. 从全集中剔除这两类逻辑异常记录，得到 clean 基础样本集并输出 CSV；
-    5. 根据异常明细生成 summary.yaml，为后续分析与审计提供统计信息。
+    5. 根据异常明细生成 `logical_anomaly_summary_stage1.yaml`，
+       为后续分析与审计提供统计信息。
     """
     script_dir = Path(__file__).resolve().parent
     # 默认读取目录为脚本上级的 ../all_States_in_a_single_file_raw/
@@ -373,11 +374,11 @@ def main() -> None:
         clean_df,
     )
 
-    # 生成 summary.yaml 统计
+    # 生成 Stage 1 逻辑异常 summary YAML 统计
     rating_increase_summary = _summarize_anomalies_by_method(rating_increase_df)
     reconstructed_summary = _summarize_anomalies_by_method(reconstructed_df)
     write_summary_yaml(
-        script_dir / "summary.yaml",
+        script_dir / "logical_anomaly_summary_stage1.yaml",
         rating_increase_summary,
         reconstructed_summary,
     )
@@ -385,4 +386,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
