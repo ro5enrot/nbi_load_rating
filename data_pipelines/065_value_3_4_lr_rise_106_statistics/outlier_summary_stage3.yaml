@@ -1,0 +1,31 @@
+# iqr_thresholds：根据全局 INVENTORY_RATING_066 计算的 IQR 阈值；
+# counts：各异常类型的记录数量以及被剔除的总数；
+# method_breakdown：按方法（3/4）划分的异常与剔除情况。
+iqr_thresholds:
+  Q1: 32.4
+  Q3: 51.7
+  lower_bound: 3.449999999999992
+  upper_bound: 80.65
+counts:
+  total_records: 397313
+  total_outliers_removed: 28772
+  outliers_by_type:
+    IQR_outlier: 28772
+    engineer_low_outlier: 668
+    engineer_high_outlier: 0
+    engineer_suspicious_low: 27
+method_breakdown:
+  method_3:
+    total: 374925
+    removed_outliers: 28096
+    removed_by_type:
+      IQR_outlier: 28096
+      engineer_low_outlier: 496
+      engineer_high_outlier: 0
+  method_4:
+    total: 22388
+    removed_outliers: 676
+    removed_by_type:
+      IQR_outlier: 676
+      engineer_low_outlier: 172
+      engineer_high_outlier: 0

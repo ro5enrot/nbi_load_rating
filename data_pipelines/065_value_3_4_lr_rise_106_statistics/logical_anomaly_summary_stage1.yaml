@@ -1,0 +1,18 @@
+# rating_increase：同一桥、同一方法下，当前年份的 INVENTORY_RATING_066
+#   严格大于上一条记录（相邻年份）中的 INVENTORY_RATING_066。
+# reconstructed_after_first_rating：YEAR_RECONSTRUCTED_106 大于该桥该方法
+#   首次出现的承载力年份（rating_year）的记录。
+method_3:
+  rating_increase:
+    num_records: 21319
+    num_structures: 15298
+  reconstructed_after_first_rating:
+    num_records: 3486
+    num_structures: 693
+method_4:
+  rating_increase:
+    num_records: 355
+    num_structures: 318
+  reconstructed_after_first_rating:
+    num_records: 125
+    num_structures: 19

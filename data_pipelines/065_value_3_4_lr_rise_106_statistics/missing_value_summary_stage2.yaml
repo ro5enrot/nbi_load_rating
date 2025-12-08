@@ -1,0 +1,29 @@
+# summary：记录 Stage 2 删除标签缺失前后的样本数量；
+# fields_missing：INVENTORY_RATING_066 在清洗前后的缺失数量（清洗后应为 0）；
+# dropped_records：因标签缺失被删除的记录数量；
+# per_method_missing：按方法 3/4 统计标签缺失与样本数量的变化。
+summary:
+  total_records_before: 397332
+  total_records_after: 397313
+fields_missing:
+  before:
+    INVENTORY_RATING_066: 19
+  after:
+    INVENTORY_RATING_066: 0
+dropped_records:
+  missing_inventory_rating_066: 19
+per_method_missing:
+  method_3:
+    before:
+      total_records: 374943
+      missing_inventory_rating_066: 18
+    after:
+      total_records: 374925
+      missing_inventory_rating_066: 0
+  method_4:
+    before:
+      total_records: 22389
+      missing_inventory_rating_066: 1
+    after:
+      total_records: 22388
+      missing_inventory_rating_066: 0

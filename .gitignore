@@ -16,3 +16,4 @@ Thumbs.db
 # 大体量中间数据，如果以后有的话再逐步加：
 # data_pipelines/*/raw/
 # results/tmp/
+data_pipelines/065_value_3_4_lr_rise_106_statistics/clean_stage*_inventory_rating.csv
