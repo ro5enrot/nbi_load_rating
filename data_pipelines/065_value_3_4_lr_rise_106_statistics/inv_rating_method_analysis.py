@@ -15,7 +15,7 @@ The script scans the `all_States_in_a_single_file_raw` directory for
    Rows where `YEAR_RECONSTRUCTED_106` is greater than the first year the
    bridge appears with the given inventory rating method.
 
-3. `summary.json`
+3. `summary.yaml`
    Totals of affected records and structures for items (1) and (2),
    broken down by rating method.
 
@@ -30,6 +30,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
+import yaml
 
 
 DATA_DIR_NAME = "all_States_in_a_single_file_raw"
@@ -270,20 +271,8 @@ def main() -> None:
         script_dir / "reconstructed_after_first_rating_records.csv",
         reconstruction_rows,
     )
-    # Write YAML summary instead of JSON for easier downstream consumption
-    yaml_lines = []
-    for method in TARGET_METHODS:
-        yaml_lines.append(f"{method}:")
-        rating = summary[method]["rating_increase"]
-        recon = summary[method]["reconstructed_after_first_rating"]
-        yaml_lines.append(f"  rating_increase:")
-        yaml_lines.append(f"    records: {rating['records']}")
-        yaml_lines.append(f"    structures: {rating['structures']}")
-        yaml_lines.append(f"  reconstructed_after_first_rating:")
-        yaml_lines.append(f"    records: {recon['records']}")
-        yaml_lines.append(f"    structures: {recon['structures']}")
     (script_dir / "summary.yaml").write_text(
-        "\n".join(yaml_lines) + "\n",
+        yaml.safe_dump(summary, sort_keys=False, allow_unicode=True),
         encoding="utf-8",
     )
 

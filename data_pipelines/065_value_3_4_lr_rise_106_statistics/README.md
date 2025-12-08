@@ -15,7 +15,7 @@ where `INV_RATING_METH_065` equals `3` or `4` across all available NBI files.
   the bridge/method pair.
 - `summary.yaml` – aggregate counts of affected records and structures for
   both analyses, broken down by method, stored as YAML for easier
-  consumption in ML/analysis tooling.
+  downstream use.
 
 ## Running the analysis
 
