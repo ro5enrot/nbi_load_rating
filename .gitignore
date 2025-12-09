@@ -17,3 +17,5 @@ Thumbs.db
 # data_pipelines/*/raw/
 # results/tmp/
 data_pipelines/065_value_3_4_lr_rise_106_statistics/clean_stage*_inventory_rating.csv
+models/fs_ftt_method3/fs_dataset_method3.csv
+models/fs_ftt_method4/fs_dataset_method4.csv
