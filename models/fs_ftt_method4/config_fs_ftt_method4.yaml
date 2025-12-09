@@ -1,0 +1,65 @@
+# FS 基线模型配置（method4，对应 INV_RATING_METH_065=4 的样本）
+# 说明：定义数据路径、特征列、划分策略以及 FT-Transformer 的结构与训练超参数
+
+paths:
+  # 清洗后的最终干净数据集路径（Stage3 输出）
+  input_clean_csv: "../../data_pipelines/065_value_3_4_lr_rise_106_statistics/clean_stage3_inventory_rating.csv"
+
+  # FS 阶段筛选+填补后的数据集
+  fs_dataset_csv: "fs_dataset_method4.csv"
+
+  # 按结构号划分的 Train/Val/Test 索引输出
+  split_indices_yaml: "split_indices_method4.yaml"
+
+  # 训练阶段的评估指标输出
+  train_metrics_yaml: "fs_ftt_metrics_method4.yaml"
+
+  # 测试集真实值与预测值输出
+  predictions_csv: "fs_ftt_predictions_method4.csv"
+
+columns:
+  # 桥梁结构号，用于划分数据，不作为模型输入
+  id_col: "STRUCTURE_NUMBER_008"
+
+  # 承载力回归目标列
+  target_col: "INVENTORY_RATING_066"
+
+  # 数值特征列（需在原始 CSV 中存在）
+  numerical_cols:
+    - YEAR_BUILT_027
+    - MAX_SPAN_LEN_MT_048
+    - DECK_WIDTH_MT_052
+    - ADT_029
+    - PERCENT_ADT_TRUCK_109
+    - MAIN_UNIT_SPANS_045
+
+  # 类别特征列（需在原始 CSV 中存在）
+  categorical_cols:
+    - STRUCTURE_KIND_043A
+    - STRUCTURE_TYPE_043B
+    - DECK_STRUCTURE_TYPE_107
+    - DESIGN_LOAD_031
+    - SURFACE_TYPE_108A
+    - SERVICE_ON_042A
+    - SERVICE_UND_042B
+    - OWNER_022
+
+split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_state: 42
+
+model:
+  d_model: 128
+  n_heads: 4
+  n_layers: 2
+  dropout: 0.1
+
+training:
+  batch_size: 64
+  max_epochs: 200
+  patience: 20
+  learning_rate: 1e-3
+  weight_decay: 1e-5
+  num_workers: 0
